@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView resultadoImageView;
     private Spinner numDadosSpinner;
     private ImageView resultado2ImageView;
+    private EditText numFacesEditText;
 
 
     @Override
@@ -39,7 +40,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         jogarDadoButton.setOnClickListener(this);
         numDadosSpinner = findViewById(R.id.numDadosSpinner);
         resultado2ImageView = findViewById(R.id.resultado2ImageView);
-        private EditText numFacesEditText;
     }
 
     public void onClick(View view) {
@@ -49,17 +49,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     numDadosSpinner.getSelectedItem().toString());
             // String que armazena números sorteados
             String resultadoText = "Faces sorteadas: ";
-            // Visibilidade do resultado2ImageView de acordo com número de dados
-            if (numDados == 2) {
-                resultado2ImageView.setVisibility(View.VISIBLE);
+            int numFaces;
+            try {
+                numFaces = Integer.parseInt(numFacesEditText.getText().toString());
+            } catch (NumberFormatException e) {
+                // Caso usuário não digite nenhum número de faces
+                numFaces = 6;
+            }
+            if (numFaces > 6) {
+                resultadoImageView.setVisibility(View.GONE);
+                resultado2ImageView.setVisibility(View.GONE);
             }
             else {
-                resultado2ImageView.setVisibility(View.GONE);
-                resultadoText = "Face sorteada: ";
+                resultadoImageView.setVisibility(View.VISIBLE);
+                // Visibilidade do resultado2ImageView de acordo com número de dados
+                if (numDados == 2) {
+                    resultado2ImageView.setVisibility(View.VISIBLE);
+                }
+                else {
+                    resultado2ImageView.setVisibility(View.GONE);
+                    resultadoText = "Face sorteada: ";
+                }
             }
             // Sorteando números de acordo com número de dados
             for (int i = 1; i <= numDados; i++) {
-                int resultado = geradorRandomico.nextInt(6) + 1;
+                int resultado = geradorRandomico.nextInt(numFaces) + 1;
                 resultadoText += resultado + ", ";
                 ImageView iv = (i == 1) ? resultadoImageView : resultado2ImageView;
                 setImageResource(iv, resultado);
