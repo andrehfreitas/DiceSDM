@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.Random;
@@ -18,6 +19,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView resultadoTextView;
     private Button jogarDadoButton;
     private ImageView resultadoImageView;
+    private Spinner numDadosSpinner;
+    private ImageView resultado2ImageView;
 
 
     @Override
