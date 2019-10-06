@@ -3,4 +3,10 @@
     <string name="naoLancado">Ainda não foi lançado</string>
     <string name="instrucaoJogar">Clique no botão abaixo para jogar o dado</string>
     <string name="jogar">Jogar</string>
+
+    <string-array name="numero_dados">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
 </resources>
