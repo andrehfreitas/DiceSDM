@@ -3,12 +3,13 @@ package br.edu.ifsp.scl.dicesdm;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     // Random usado para simular o lançamento do dado
     private Random geradorRandomico;
