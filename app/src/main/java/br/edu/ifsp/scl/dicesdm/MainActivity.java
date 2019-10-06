@@ -42,9 +42,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void onClick(View view) {
         if (view.getId() == R.id.jogarDadoButton) {
-            int resultado = geradorRandomico.nextInt(6) + 1;
-            resultadoTextView.setText("Face sorteada: " + resultado);
-            setImageResource(resultadoImageView, resultado);
+            // Recuperando o número de dados selecionados
+            int numDados = Integer.parseInt(
+                    numDadosSpinner.getSelectedItem().toString());
+            // String que armazena números sorteados
+            String resultadoText = "Faces sorteadas: ";
+            // Visibilidade do resultado2ImageView de acordo com número de dados
+            if (numDados == 2) {
+                resultado2ImageView.setVisibility(View.VISIBLE);
+            }
+            else {
+                resultado2ImageView.setVisibility(View.GONE);
+                resultadoText = "Face sorteada: ";
+            }
+            // Sorteando números de acordo com número de dados
+            for (int i = 1; i <= numDados; i++) {
+                int resultado = geradorRandomico.nextInt(6) + 1;
+                resultadoText += resultado + ", ";
+                ImageView iv = (i == 1) ? resultadoImageView : resultado2ImageView;
+                setImageResource(iv, resultado);
+            }
+            resultadoTextView.setText(
+                    resultadoText.substring(0, resultadoText.lastIndexOf(',')));
         }
     }
 
