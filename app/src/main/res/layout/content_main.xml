@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainActivity"
+    tools:showIn="@layout/activity_main">
+
+    <TextView
+        android:id="@+id/TextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Clique no botão abaixo para sortear um número"
+        android:textSize="30dp"
+        android:gravity="center_horizontal"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/jogarDadoButton"/>
+
+    <Button
+        android:id="@+id/jogarDadoButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Sortear"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:onClick="btnJoga"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/resultadoTextView1"
+        app:layout_constraintTop_toBottomOf="@id/TextView"/>
+
+    <TextView
+        android:id="@+id/resultadoTextView1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/nao_sorteado"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/jogarDadoButton"
+        app:layout_constraintBottom_toTopOf="@id/resultadoTextView2"/>
+
+    <TextView
+        android:id="@+id/resultadoTextView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text=""
+        android:textColor="#BB0000"
+        android:textSize="80sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/resultadoTextView1"
+        app:layout_constraintBottom_toTopOf="@id/resultadoTextView3"/>
+
+    <TextView
+        android:id="@+id/resultadoTextView3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text=""
+        android:textColor="#0019BB"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/resultadoTextView2" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

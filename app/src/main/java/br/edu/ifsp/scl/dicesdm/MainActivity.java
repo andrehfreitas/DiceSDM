@@ -1,102 +1,73 @@
 package br.edu.ifsp.scl.dicesdm;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
-    // Random usado para simular o lançamento do dado
-    private Random geradorRandomico;
-    // Componentes visuais
-    private TextView resultadoTextView;
-    private Button jogarDadoButton;
-    private ImageView resultadoImageView;
-    private Spinner numDadosSpinner;
-    private ImageView resultado2ImageView;
-    private EditText numFacesEditText;
-
+public class MainActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        // Após a criação da tela
-        geradorRandomico = new Random(System.currentTimeMillis());
-        // Recuperando referência para o resultadoTextView do arquivo de layout
-        resultadoTextView = findViewById(R.id.resultadoTextView);
-        // Recuperando referência para o jogarDadoButton do arquivo de layout
-        jogarDadoButton = findViewById(R.id.jogarDadoButton);
-        resultadoImageView = findViewById(R.id.resultadoImageView);
-        jogarDadoButton.setOnClickListener(this);
-        numDadosSpinner = findViewById(R.id.numDadosSpinner);
-        resultado2ImageView = findViewById(R.id.resultado2ImageView);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
     }
 
-    public void onClick(View view) {
-        if (view.getId() == R.id.jogarDadoButton) {
-            // Recuperando o número de dados selecionados
-            int numDados = Integer.parseInt(
-                    numDadosSpinner.getSelectedItem().toString());
-            // String que armazena números sorteados
-            String resultadoText = "Faces sorteadas: ";
-            int numFaces;
-            try {
-                numFaces = Integer.parseInt(numFacesEditText.getText().toString());
-            } catch (NumberFormatException e) {
-                // Caso usuário não digite nenhum número de faces
-                numFaces = 6;
-            }
-            if (numFaces > 6) {
-                resultadoImageView.setVisibility(View.GONE);
-                resultado2ImageView.setVisibility(View.GONE);
-            }
-            else {
-                resultadoImageView.setVisibility(View.VISIBLE);
-                // Visibilidade do resultado2ImageView de acordo com número de dados
-                if (numDados == 2) {
-                    resultado2ImageView.setVisibility(View.VISIBLE);
-                }
-                else {
-                    resultado2ImageView.setVisibility(View.GONE);
-                    resultadoText = "Face sorteada: ";
-                }
-            }
-            // Sorteando números de acordo com número de dados
-            for (int i = 1; i <= numDados; i++) {
-                int resultado = geradorRandomico.nextInt(numFaces) + 1;
-                resultadoText += resultado + ", ";
-                ImageView iv = (i == 1) ? resultadoImageView : resultado2ImageView;
-                setImageResource(iv, resultado);
-            }
-            resultadoTextView.setText(
-                    resultadoText.substring(0, resultadoText.lastIndexOf(',')));
-        }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflar o menu e colocar os itens
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
 
-    private void setImageResource(ImageView iv, int face) {
-        switch (face) {
-            case 1: iv.setImageResource(R.drawable.dice_1);
-                break;
-            case 2: iv.setImageResource(R.drawable.dice_2);
-                break;
-            case 3: iv.setImageResource(R.drawable.dice_3);
-                break;
-            case 4: iv.setImageResource(R.drawable.dice_4);
-                break;
-            case 5: iv.setImageResource(R.drawable.dice_5);
-                break;
-            case 6: iv.setImageResource(R.drawable.dice_6);
-                break;
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if (id == R.id.action_settings) {
+            Intent configuracaoIntent = new Intent(this, ConfiguracaoActivity.class);
+            startActivity(configuracaoIntent);
+            return true;
         }
+
+        if (id == R.id.action_exit){
+            finish();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void btnJoga(View view) {
+        Bundle dados = getIntent().getExtras();
+
+        if (dados != null) {
+            int qtdenumeros = Integer.parseInt(dados.getString("qtdeNumBingo").toString());
+
+            Random random = new Random();
+            int numeroram = random.nextInt(qtdenumeros) + 1;
+            String numeroramtexto = Integer.toString(numeroram);
+
+            TextView resultText1 = (TextView) findViewById(R.id.resultadoTextView1);
+            resultText1.setText("Número sorteado de 1 a " + qtdenumeros);
+
+            TextView resultText2 = (TextView) findViewById(R.id.resultadoTextView2);
+            resultText2.setText(numeroramtexto);
+        }
+
+        /*ArrayList<String> listaSorteados = new ArrayList<>();
+        listaSorteados.add(numeroramtexto);
+        TextView resultText3 = (TextView) findViewById(R.id.resultadoTextView3);
+        resultText3.setText(listaSorteados.toString());*/
     }
 }
