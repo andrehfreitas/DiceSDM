@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         jogarDadoButton = findViewById(R.id.jogarDadoButton);
         resultadoImageView = findViewById(R.id.resultadoImageView);
         jogarDadoButton.setOnClickListener(this);
+        numDadosSpinner = findViewById(R.id.numDadosSpinner);
+        resultado2ImageView = findViewById(R.id.resultado2ImageView);
     }
 
     public void onClick(View view) {
