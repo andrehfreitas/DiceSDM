@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         jogarDadoButton.setOnClickListener(this);
         numDadosSpinner = findViewById(R.id.numDadosSpinner);
         resultado2ImageView = findViewById(R.id.resultado2ImageView);
+        private EditText numFacesEditText;
     }
 
     public void onClick(View view) {
