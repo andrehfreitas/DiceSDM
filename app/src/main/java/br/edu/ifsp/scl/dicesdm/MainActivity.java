@@ -31,4 +31,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         jogarDadoButton = findViewById(R.id.jogarDadoButton);
         jogarDadoButton.setOnClickListener(this);
     }
+
+    public void onClick(View view) {
+        if (view.getId() == R.id.jogarDadoButton) {
+            int resultado = geradorRandomico.nextInt(6) + 1;
+            resultadoTextView.setText("Face sorteada: " + resultado);
+        }
+    }
 }
