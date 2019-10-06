@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         resultadoTextView = findViewById(R.id.resultadoTextView);
         // Recuperando referência para o jogarDadoButton do arquivo de layout
         jogarDadoButton = findViewById(R.id.jogarDadoButton);
+        resultadoImageView = findViewById(R.id.resultadoImageView);
         jogarDadoButton.setOnClickListener(this);
     }
 
@@ -38,6 +39,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (view.getId() == R.id.jogarDadoButton) {
             int resultado = geradorRandomico.nextInt(6) + 1;
             resultadoTextView.setText("Face sorteada: " + resultado);
+        }
+    }
+
+    private void setImageResource(ImageView iv, int face) {
+        switch (face) {
+            case 1: iv.setImageResource(R.drawable.dice_1);
+                break;
+            case 2: iv.setImageResource(R.drawable.dice_2);
+                break;
+            case 3: iv.setImageResource(R.drawable.dice_3);
+                break;
+            case 4: iv.setImageResource(R.drawable.dice_4);
+                break;
+            case 5: iv.setImageResource(R.drawable.dice_5);
+                break;
+            case 6: iv.setImageResource(R.drawable.dice_6);
+                break;
         }
     }
 }
